@@ -12,14 +12,16 @@ public class CommentSaveResponseDto {
     private final String username;
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
+    private final Long scheduleid;
 
     public CommentSaveResponseDto(Long id, String content, String username,
-                                  LocalDateTime createdAt, LocalDateTime modifiedAt) {
+                                  LocalDateTime createdAt, LocalDateTime modifiedAt,Long scheduleid ) {
         this.id = id;
         this.content = content;
         this.username = username;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.scheduleid = scheduleid;
     }
 
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -26,7 +27,7 @@ public class Comment extends Timestamped {
     }
 
     @ManyToOne
-    @JoinColumn(name = "Schedule_ID")
+    @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
 }

@@ -3,7 +3,6 @@ package spring.schedulejpa.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import spring.schedulejpa.dto.*;
-import spring.schedulejpa.entity.Comment;
 import spring.schedulejpa.service.CommentService;
 
 import java.util.List;
