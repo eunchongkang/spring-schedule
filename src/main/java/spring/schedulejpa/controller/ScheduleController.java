@@ -14,19 +14,19 @@ public class ScheduleController {
 
     private final ScheduleService scheduleService;
 
-    @PostMapping("/scheudle")
-    public ScheduleSaveRsponseDto saveSchedule(@RequestBody ScheduleSaveRsquestDto scheduleSaveRsquestDto) {
-        return scheduleService.saveSchedule(scheduleSaveRsquestDto);
+    @PostMapping("/schedule")
+    public ScheduleSaveRsponseDto saveSchedule(@RequestBody ScheduleSaveRequestDto scheduleSaveRequestDto) {
+        return scheduleService.saveSchedule(scheduleSaveRequestDto);
     }
 
-    @GetMapping("/scheudle/{scehduleId}")
-    public ScheduleDetailResponseDto getSchedule(@PathVariable Long scehduleId) {
-        return scheduleService.getSchedule(scehduleId);
+    @GetMapping("/schedule/{scheduleId}")
+    public ScheduleDetailResponseDto getSchedule(@PathVariable Long scheduleId) {
+        return scheduleService.getSchedule(scheduleId);
     }
 
     @PutMapping("/schedule/{scheduleId}")
-    public ScheduleUpdateResponseDto updateSchedule(@PathVariable Long scheduleId, @RequestBody ScheduleUpdateRequseDto scheduleUpdateRequseDto ){
-        return scheduleService.updateSchedule(scheduleId, scheduleUpdateRequseDto);
+    public ScheduleUpdateResponseDto updateSchedule(@PathVariable Long scheduleId, @RequestBody ScheduleUpdateRequestDto scheduleUpdateRequestDto ){
+        return scheduleService.updateSchedule(scheduleId, scheduleUpdateRequestDto);
     }
 
     }
