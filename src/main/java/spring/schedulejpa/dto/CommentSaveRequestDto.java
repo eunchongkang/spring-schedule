@@ -6,7 +6,6 @@ import spring.schedulejpa.entity.Schedule;
 
 
 @Getter
-@Setter
 
 public class CommentSaveRequestDto {
 

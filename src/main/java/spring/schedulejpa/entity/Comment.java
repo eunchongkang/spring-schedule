@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
-
 @Entity
 @Getter
 @NoArgsConstructor
@@ -16,9 +15,14 @@ public class Comment extends Timestamped {
     private String content;
     private String username;
 
-    public Comment(String content, String username) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_id")
+    private Schedule schedule;
+
+    public Comment(String content, String username, Schedule schedule) {
         this.content = content;
         this.username = username;
+        this.schedule = schedule;
     }
 
     public void update(String content, String username) {
@@ -26,8 +30,6 @@ public class Comment extends Timestamped {
         this.username = username;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "schedule_id")
-    private Schedule schedule;
+
 
 }

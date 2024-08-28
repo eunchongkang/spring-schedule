@@ -33,7 +33,8 @@ public class CommentService {
 
         Comment comment = new Comment(
                 commentSaveRequestDto.getContent(),
-                commentSaveRequestDto.getUsername()
+                commentSaveRequestDto.getUsername(),
+                schedule
         );
 
         Comment savedComment = commentRepository.save(comment);
@@ -97,12 +98,8 @@ public class CommentService {
     }
 
     @Transactional
-    public void deleteComment(Long commentId, CommentDeleteRequestDto commentDeleteRequestDto) {
+    public void deleteComment(Long commentId) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(()-> new NoSuchElementException("댓글이 존재하지 않습니다."));
-
-        if(!comment.getUsername().equals(commentDeleteRequestDto.getUsername())){
-            throw  new RuntimeException("삭제 할 수 없습니다");
-        }
             commentRepository.delete(comment);
     }
 

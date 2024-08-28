@@ -1,7 +1,6 @@
 package spring.schedulejpa.dto;
 
 import lombok.Getter;
-import spring.schedulejpa.entity.Schedule;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +15,7 @@ public class ScheduleDetailResponseDto {
     private final LocalDateTime modifiedAt;
 
     public ScheduleDetailResponseDto(Long id, String title, String user,
-    String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
+                                     String content, LocalDateTime createdAt, LocalDateTime modifiedAt, int size) {
         this.id = id;
         this.title = title;
         this.user = user;
