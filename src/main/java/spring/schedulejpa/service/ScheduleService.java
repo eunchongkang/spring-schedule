@@ -23,7 +23,7 @@ public class ScheduleService {
     @Transactional
     public ScheduleSaveRsponseDto saveSchedule(ScheduleSaveRequestDto ScheduleSaveRequestDto) {
         Schedule schedule = new Schedule(
-                ScheduleSaveRequestDto.getUser(),
+                ScheduleSaveRequestDto.getUserid(),
                 ScheduleSaveRequestDto.getTitle(),
                 ScheduleSaveRequestDto.getContent()
         );
@@ -31,8 +31,8 @@ public class ScheduleService {
 
         return new ScheduleSaveRsponseDto(
                 savedSchedule.getId(),
-                savedSchedule.getUser(),
                 savedSchedule.getTitle(),
+                savedSchedule.getUserid(),
                 savedSchedule.getContent(),
                 savedSchedule.getCreatedAt(),
                 savedSchedule.getModifiedAt()
@@ -43,12 +43,13 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(() -> new NoSuchElementException("id가 존재하지 않습니다."));
         return new ScheduleDetailResponseDto(
                 schedule.getId(),
-                schedule.getUser(),
                 schedule.getTitle(),
+                schedule.getUserid(),
                 schedule.getContent(),
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt(),
-                schedule.getComments().size());
+                schedule.getComments()
+        );
     }
 
     @Transactional
@@ -56,13 +57,13 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(ScheduleId).orElseThrow(() -> new NoSuchElementException("id가 존재하지 않습니다."));
 
         schedule.update(
-                scheduleUpdateRequestDto.getUser(),
+                scheduleUpdateRequestDto.getUserid(),
                 scheduleUpdateRequestDto.getTitle(),
                 scheduleUpdateRequestDto.getContent()
         );
         return new ScheduleUpdateResponseDto(
                 schedule.getId(),
-                schedule.getUser(),
+                schedule.getUserid(),
                 schedule.getTitle(),
                 schedule.getContent()
         );
@@ -81,33 +82,13 @@ public class ScheduleService {
         return schedules.map(schedule -> new ScheduleDetailResponseDto(
                 schedule.getId(),
                 schedule.getTitle(),
-                schedule.getUser(),
+                schedule.getUserid(),
                 schedule.getContent(),
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt(),
-                schedule.getComments().size()
+                schedule.getComments()
         ));
     }
 }
-//    public SchedulePageResponseDto getPage(Pageable pageable){
-//        Page<Schedule> schedulepage = scheduleRepository.findAll(pageable);
-//
-//        List<SchedulePageResponseDto> dtoList = new ArrayList<>();
-//
-//        for (Schedule schedule : schedulepage.getContent()) {
-//            int commentCount = commentRepository.countByScheduledId(schedule.getId());
-//            SchedulePageResponseDto dto = new SchedulePageResponseDto(
-//                    schedule.getId(),
-//                    schedule.getTitle(),
-//                    schedule.getContent(),
-//                    schedule.getModifiedAt(),
-//                    schedule.getCreatedAt(),
-//                    schedule.getUser(),
-//                    commentCount
-//
-//            );
-//            dtoList.add(dto);
-//    }
-//        return new SchedulePageResponseDto(dtoList, schedulePage.getNumber(), schedulePage.getSize(), schedulePage.getTotalElements());
-//    }
+
 

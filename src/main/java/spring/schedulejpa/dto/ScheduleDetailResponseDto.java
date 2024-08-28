@@ -1,26 +1,30 @@
 package spring.schedulejpa.dto;
 
 import lombok.Getter;
+import spring.schedulejpa.entity.Comment;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 public class ScheduleDetailResponseDto {
 
     private final Long id;
     private final String title;
-    private final String user;
+    private final Long userid;
     private final String content;
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
+    private final int comments;
 
-    public ScheduleDetailResponseDto(Long id, String title, String user,
-                                     String content, LocalDateTime createdAt, LocalDateTime modifiedAt, int size) {
+    public ScheduleDetailResponseDto(Long id, String title, Long userid,
+                                     String content, LocalDateTime createdAt, LocalDateTime modifiedAt, List<Comment> comments) {
         this.id = id;
         this.title = title;
-        this.user = user;
+        this.userid = userid;
         this.content = content;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.comments = comments.size();
     }
 }

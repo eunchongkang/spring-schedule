@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -18,8 +21,11 @@ public class User extends Timestamped{
         this.username = username;
         this.email = email;
     }
+
+    @OneToMany(mappedBy = "user")
+    private List<TakeCharge> takeCharges = new ArrayList<>();
+
 }
-//    @ManyToOne
-//    Schedule schedule;
+
 
 
